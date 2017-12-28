@@ -61,3 +61,19 @@ typings/
 # dotenv environment variables file
 .env
 
+# Eclipse
+.classpath
+.project
+.settings/
+ 
+# Intellij
+.idea/
+*.iml
+*.iws
+ 
+# Maven
+log/
+target/
+!/.mvn/wrapper/maven-wrapper.jar
+
+/.vscode
