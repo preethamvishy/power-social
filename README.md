@@ -51,6 +51,13 @@ Basic useful feature list:
 	}
     ```
 
+ * Run the Spring backend to fetch your profiles, tweet and schedule tweet. The Spring backend is typically required to run in `port 7777.`
+ * `npm install` in the node backend and frontend directories.
+ * `ng serve` in the frontend directory to power up the frontend. This will typically run in port 4200 by default. Head over to `http://localhost:4200.`
+ * `node server.js` in node backend directory. The node backend runs on `port 5000` by default.
+ 
+
+### 
 
 Tweet panel             |  Masonry layout
 :-------------------------:|:-------------------------:
