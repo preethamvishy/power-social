@@ -1,3 +1,7 @@
+
+
+[![N|Solid](https://i.imgur.com/h4LBHVd.jpg)](#)
+
 # Power Social
 
 A social management tool for power users and agencies.
@@ -5,7 +9,7 @@ A social management tool for power users and agencies.
 Basic useful feature list:
 
  * Schedule tweets
- * Add tweets to predefined queues
+ * Add tweets to predefined queue
  * Works with tools every power user knows - Twitter and Buffer 
 
 
@@ -16,6 +20,7 @@ Basic useful feature list:
  * [BufferJ](https://github.com/vitorenesduarte/bufferJ) - Java wrapper for the Buffer API.
  * Angular Material 2
  * Bootstrap
+
 
 
 ### Getting started:
@@ -48,6 +53,10 @@ Basic useful feature list:
 	}
     ```
 
+
+Tweet panel             |  Masonry layout
+:-------------------------:|:-------------------------:
+![](https://imgur.com/pZX71Ae.jpg)  |  ![](https://imgur.com/c3Es9Bt.jpg)
 
 
 
