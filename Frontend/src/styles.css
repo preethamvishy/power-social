@@ -1,0 +1,15 @@
+/* You can add global styles to this file, and also import other style files */
+/*	
+
+mat-dialog {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  width: 400px;
+  height: 200px;
+  z-index: 100000;
+}*/
+.cdk-overlay-pane, .md-overlay-pane {
+  height: auto !important;
+  
+}

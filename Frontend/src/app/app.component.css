@@ -1,0 +1,99 @@
+.main-tweet-card{
+  position: fixed;
+  height: 100%;
+  width: 300px;  
+  overflow-y: auto;
+  overflow-x: visible;
+}
+.example-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.example-container > * {
+  width: 100%;
+}
+.card-image {
+  float: left;
+  width: 40%;
+  height: 250px;
+}
+.card-image img {
+  height: 50%;
+}
+.right-content {
+  width: 60%;
+  float: left;
+  
+}
+.card-title {
+  padding-left: 20px;
+}
+
+.parent {
+    display: block;
+}
+.example-card {
+  width: 16%;
+  min-width: 250px;
+  /*width: 300px;*/
+  height: auto;
+  break-inside: avoid-column;
+  float: left;
+  left: auto;
+  justify-content: space-between;
+}
+
+.example-header-image {
+  /*background-image: url('../../../assets/img/examples/shiba1.jpg');*/
+  background-size: cover;
+}
+
+.list-card
+{
+    width: 98%;
+    
+    float: left;
+}
+
+.masonry-layout {
+  column-count: 3;
+  column-gap: 0;
+}
+.masonry-layout__panel {
+  break-inside: avoid;
+  padding: 5px;
+}
+.masonry-layout__panel-content {
+  padding: 10px;
+  border-radius: 10px;
+}
+
+/**/
+.example-sidenav-fab-container {
+  width: 500px;
+  height: 300px;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+.example-sidenav-fab-container mat-sidenav {
+  max-width: 200px;
+}
+
+.example-sidenav-fab-container .mat-sidenav-content,
+.example-sidenav-fab-container mat-sidenav {
+  display: flex;
+  overflow: visible;
+}
+
+.example-scrolling-content {
+  overflow: auto;
+  height: 100%;
+}
+
+.example-fab.mat-mini-fab {
+  position: absolute;
+  right: 20px;
+  bottom: 10px;
+}
+

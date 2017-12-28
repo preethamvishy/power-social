@@ -1,0 +1,123 @@
+<nav class="navbar fixed-top navbar-light" style="background-color: #26A59A;">
+  <div class="container">
+    <div [style.text-align]="'center'" [style.vertical-align]="'center'" class="navbar-header">
+
+      <a class="navbar-brand" style="font-family: 'Poiret One', cursive; font-size: 25px">
+        <span [style.color]="'white'" class="glyphicon glyphicon-hearts"></span>PowerSocial</a>
+    </div>
+  </div>
+</nav>
+<br>
+<div class="main-tweet-card" [style.margin-left.px]='10'>
+  <mat-card [style.width.px]='300'>
+    <textarea class="form-group" #tweetBox [(ngModel)]="editTweet.text" placeholder="Tweet" [style.height.px]="110" [style.max-width.px]="300">
+    </textarea>
+    <span [style.color]="'green'" pull-left>{{editTweet?.text?.length}}</span>
+    <button [style.size]="'10%'" class="waves-effect waves-light btn" (click)="clearTweet()">Clear tweet composer</button>
+    <br>
+    <br>
+    <input matInput type="text" placeholder="Enter image URL" [(ngModel)]="editTweet.photoUrl">
+    <img *ngIf="editTweet?.photoUrl" [style.max-width.px]="'100'" [style.max-height.px]="'100'" src="{{editTweet.photoUrl}}">
+    <br>
+    <div class="col-xs-7">
+      <img style="border-radius: 50%; margin-left: 2px; cursor:pointer;" *ngFor="let profile of profiles" src="{{profile.avatar}}"
+        (click)="bufferTweet(profile.service_username, editTweet.text, editTweet.photoUrl, postNow, scheduled, schedule)" />
+    </div>
+    <br>
+    <div style="margin-left: 25%; margin-bottom: 10px">
+      <form action="" (change)="checkbox($event)">
+        <input type="radio" name="postNow" id="postNow" />
+        <label for="postNow">POST NOW</label>
+        <input type="radio" name="postNow" id="buffer" />
+        <label for="buffer">BUFFER</label>
+        <input type="radio" name="postNow" id="schedule" />
+        <label for="schedule">SCHEDULE</label>
+      </form>
+    </div>
+
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        Schedule Post
+      </mat-expansion-panel-header>
+      <mat-panel-description style="font-size: 0.7em">
+        <table cellspacing="0" style="z-index: 10">
+          <tr>
+            <td>
+              <input style="font-size: 1em; text-align: center" matInput maxlength="2" placeholder="DD" [(ngModel)]="schedule.DD">
+            </td>
+            <td>
+              <input style="font-size: 1em; text-align: center" matInput maxlength="2" placeholder="MM" [(ngModel)]="schedule.MM">
+            </td>
+            <td>
+              <input style="font-size: 1em; text-align: center" matInput #year maxlength="4" placeholder="YYYY" [(ngModel)]="schedule.YYYY">
+            </td>
+            <td>
+              <input style="font-size: 1em; text-align: center" matInput #hh maxlength="2" placeholder="HH" [(ngModel)]="schedule.hh">
+            </td>
+            <td>
+              <input style="font-size: 1em; text-align: center" matInput #mm maxlength="2" placeholder="MM" [(ngModel)]="schedule.mm">
+            </td>
+          </tr>
+        </table>
+      </mat-panel-description>
+    </mat-expansion-panel>
+  </mat-card>
+</div>
+
+<mat-card [style.margin-left.px]="'320'" [style.margin-right.px]="'10'">
+  <div class="">
+    <form class="col">
+      <div class="row">
+        <div class="input-field">
+          <input id="hashtags" type="text" [(ngModel)]="searchquery" [ngModelOptions]="{standalone: true}" (submit)="fetchExtendedTweets(searchquery, -1)">
+          <label for="hashtags">Enter search criteria</label>
+        </div>
+      </div>
+      <button class="waves-effect waves-light btn" (click)="fetchExtendedTweets(searchquery, -1)">Fetch Tweets By User</button>
+      <button class="waves-effect waves-light btn" (click)="fetchFavs(searchquery, -1)">Fetch Favs of User</button>
+      <button class="waves-effect waves-light btn" (click)="fetchById()">Fetch By Tweet Id</button>
+      <button class="waves-effect waves-light btn" (click)="fetchList(searchquery, -1)">Fetch List</button>
+      <button class="waves-effect waves-light btn" (click)="clearTL()">Clear Tl</button>
+    </form>
+  </div>
+</mat-card>
+
+<div class="row" *ngIf="extended==true" [style.margin-left.px]="310">
+  <masonry>
+    <masonry-brick *ngFor="let item of extendedtimeline; let i=index" style="width: 305px;">
+      <mat-card class="row " [style.vertical-align]="top" [style.float]="'left'" [style.margin-left.px]="'10'" [style.margin-top.px]="'10'"
+        class="example-card">
+        <mat-card-header>
+          <img mat-card-avatar src="{{item.user.profile_image_url}}">
+          <mat-card-title (click)="fetchExtendedTweets(item.user.screen_name, -1)">@{{item.user.screen_name}}</mat-card-title>
+          <mat-card-subtitle>{{item.user.name}}</mat-card-subtitle>
+        </mat-card-header>
+        <br>
+        <br>
+        <div *ngIf="item.entities.media">
+          <img *ngFor="let image of item.extended_entities.media" mat-card-image src="{{image.media_url}}">
+        </div>
+        <mat-card-content>
+          <p>
+            {{item.full_text}}
+          </p>
+          <blockquote class="boxed" *ngIf="item.quoted_status">
+            @{{item.quoted_status.user.screen_name}}
+            <br> {{item.quoted_status.full_text}}
+            <div *ngIf="item.quoted_status?.entities?.media">
+              <img [style.max-width.px]="150" src="{{item.quoted_status.entities?.media[0]?.media_url}}">
+            </div>
+          </blockquote>
+          <br>
+          <a *ngIf="extended==false" href="https://twitter.com/{{item.fromUser}}/status/{{item.id_str}}" target="_blank">{{dates[i] | timeAgo}}</a>
+          <a *ngIf="extended==true" href="https://twitter.com/{{item.user.screen_name}}/status/{{item.id_str}}" target="_blank">{{dates[i] | timeAgo}}</a>
+          <span [style.color]="'green'" pull-left>{{item.retweet_count}}</span>
+          <span *ngIf="!item.retweeted_status" [style.color]="'red'" pull-left>{{item.favorite_count}}</span>
+          <span *ngIf="item.retweeted_status" [style.color]="'red'" pull-left>{{item.retweeted_status.favorite_count}}</span>
+          <br>
+        </mat-card-content>
+      </mat-card>
+    </masonry-brick>
+  </masonry>
+</div>
+<br>
