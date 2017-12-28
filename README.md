@@ -1,10 +1,8 @@
-
-
-[![N|Solid](https://i.imgur.com/h4LBHVd.jpg)](#)
-
 # Power Social
 
 A social management tool for power users and agencies.
+
+[![N|Solid](https://i.imgur.com/h4LBHVd.jpg)](#)
 
 Basic useful feature list:
 
